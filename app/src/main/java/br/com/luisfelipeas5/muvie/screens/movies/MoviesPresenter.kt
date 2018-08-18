@@ -8,8 +8,20 @@ import io.reactivex.rxkotlin.subscribeBy
 class MoviesPresenter(private val schedulerProvider: SchedulerProvider,
                       private val interactor: MoviesContract.Interactor) : BasePresenter<MoviesContract.View>(), MoviesContract.Presenter {
 
+    private var mNextPage: Int = 1
+
+    private var mLoadingMovies: Boolean = false
+    set(loading) {
+        mView?.onLoadingMovies(loading)
+    }
+
     override fun loadMovies() {
-        val getMoviesDisposable = interactor.getMovies()
+        if (mLoadingMovies) {
+            return
+        }
+
+        mLoadingMovies = true
+        val getMoviesDisposable = interactor.getMovies(mNextPage)
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
@@ -20,10 +32,13 @@ class MoviesPresenter(private val schedulerProvider: SchedulerProvider,
     }
 
     private fun onMoviesReady(movies: List<Movie>) {
+        mLoadingMovies = false
+        mNextPage++
         mView?.onNewMoviesReady(movies)
     }
 
     private fun onGetMoviesFailed(throwable: Throwable) {
+        mLoadingMovies = false
         throwable.printStackTrace()
     }
 

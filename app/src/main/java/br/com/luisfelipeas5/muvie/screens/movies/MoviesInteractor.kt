@@ -6,8 +6,8 @@ import io.reactivex.Single
 
 class MoviesInteractor(private val movieApiHelper: MovieApiHelper) : MoviesContract.Interactor {
 
-    override fun getMovies(): Single<List<Movie>> {
-        return movieApiHelper.getMovies()
+    override fun getMovies(page: Int): Single<List<Movie>> {
+        return movieApiHelper.getMovies(page)
     }
 
 }

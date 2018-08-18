@@ -33,7 +33,8 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
         mMovies.addAll(newMovies)
 
-        DiffUtil.calculateDiff(MoviesDiffUtilCallback(oldMovies, mMovies))
+        val moviesDiffUtilCallback = MoviesDiffUtilCallback(oldMovies, mMovies)
+        DiffUtil.calculateDiff(moviesDiffUtilCallback).dispatchUpdatesTo(this)
     }
 
     inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView), LayoutContainer
