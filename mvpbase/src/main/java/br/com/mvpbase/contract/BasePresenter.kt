@@ -2,7 +2,6 @@ package br.com.mvpbase.contract
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
-import br.com.madeinlabs.mvpbase.contract.Contract
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 

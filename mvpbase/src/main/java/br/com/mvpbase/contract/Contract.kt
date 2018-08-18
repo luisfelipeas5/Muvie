@@ -1,4 +1,4 @@
-package br.com.madeinlabs.mvpbase.contract
+package br.com.mvpbase.contract
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

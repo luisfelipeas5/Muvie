@@ -5,4 +5,8 @@
     android:background="@color/colorAccent"
     android:layout_height="match_parent">
 
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/rvMovies"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

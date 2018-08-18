@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import br.com.madeinlabs.mvpbase.androidview.ToastController
-import br.com.madeinlabs.mvpbase.contract.Contract
+import br.com.mvpbase.contract.Contract
 import br.com.mvpbase.viewstatus.FragmentStatus
 
 abstract class BaseFragment: Fragment(), Contract.View {
