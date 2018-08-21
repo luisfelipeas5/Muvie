@@ -26,11 +26,17 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = mMovies[position]
-        val name = movie.getName()
-        holder.tvName.text = name
 
-        val context = holder.itemView.context
-        holder.ivCover.contentDescription = context.getString(R.string.movie_cover_content_description, name)
+        movie.getName()?.let {name ->
+            holder.tvName.text = if (name.split(" ").size >= 3) {
+                name.replaceFirst(" ", "\n")
+            } else {
+                name
+            }
+
+            val context = holder.itemView.context
+            holder.ivCover.contentDescription = context.getString(R.string.movie_cover_content_description, name)
+        }
 
         val cover = movie.getSmallCover()
         Glide.with(holder.itemView)
