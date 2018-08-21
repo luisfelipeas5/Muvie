@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import br.com.luisfelipeas5.muvie.R
 import br.com.luisfelipeas5.muvie.model.domain.movie.Movie
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.adapter_movies.*
 
@@ -24,7 +26,17 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = mMovies[position]
-        holder.tvName.text = movie.getName()
+        val name = movie.getName()
+        holder.tvName.text = name
+
+        val context = holder.itemView.context
+        holder.ivCover.contentDescription = context.getString(R.string.movie_cover_content_description, name)
+
+        val cover = movie.getSmallCover()
+        Glide.with(holder.itemView)
+                .load(cover)
+                .apply(RequestOptions.centerCropTransform())
+                .into(holder.ivCover)
     }
 
     fun addAll(newMovies: List<Movie>) {
