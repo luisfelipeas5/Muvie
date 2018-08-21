@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView android:id="@+id/ivCover"
+        android:contentDescription="@string/movie_cover_content_description"
+        tools:src="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/cover_height" />
+
+    <View android:id="@+id/vBackground"
+        android:background="@drawable/rectangle_black_gradient"
+        app:layout_constraintTop_toTopOf="@id/sNameTop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"/>
+
+    <View android:id="@+id/sNameTop"
+        app:layout_constraintBottom_toTopOf="@id/tvName"
+        android:layout_width="0dp"
+        android:layout_height="24dp" />
+
+    <TextView android:id="@+id/tvName"
+        tools:text="Ghost\nin the shell"
+        android:textAllCaps="true"
+        android:layout_margin="16dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ivCover"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

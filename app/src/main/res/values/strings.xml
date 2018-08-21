@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">muvie</string>
+    <string name="movie_cover_content_description">%s\'s cover</string>
 </resources>
