@@ -5,4 +5,5 @@ import io.reactivex.Single
 
 interface MovieApiHelper {
     fun getMovies(page: Int = 1): Single<List<Movie>>
+    fun getMovie(movieId: String?): Single<Movie>
 }

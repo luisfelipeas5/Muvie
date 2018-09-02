@@ -11,4 +11,6 @@ class TheMovieDbMovieApiHelper(private val theMovieDbService: TheMovieDbService)
                 .map {getMoviesResponse -> getMoviesResponse.movies }
     }
 
+    override fun getMovie(movieId: String?): Single<Movie> = theMovieDbService.getMovie(movieId).cast(Movie::class.java)
+
 }

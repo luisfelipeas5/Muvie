@@ -2,13 +2,16 @@ package br.com.luisfelipeas5.muvie.model.helpers.movieapi.themoviedb
 
 import android.content.Context
 import br.com.luisfelipeas5.muvie.R
+import br.com.luisfelipeas5.muvie.model.domain.movie.Movie
 import br.com.luisfelipeas5.muvie.model.domain.movie.TMDbGetMoviesResponse
+import br.com.luisfelipeas5.muvie.model.domain.movie.TMDbMovie
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -45,5 +48,8 @@ interface TheMovieDbService {
 
     @GET(TheMovieDbMethods.DISCOVER_MOVIE)
     fun getMovies(@Query(TheMovieDbKeys.PAGE) page: Int): Single<TMDbGetMoviesResponse>
+
+    @GET(TheMovieDbMethods.MOVIE)
+    fun getMovie(@Path(TheMovieDbKeys.ID_PATH) movieId: String?): Single<TMDbMovie>
 
 }

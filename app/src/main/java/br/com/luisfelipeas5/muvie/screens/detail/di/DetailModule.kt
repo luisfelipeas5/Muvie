@@ -13,7 +13,7 @@ class DetailModule {
 
     @Provides
     fun providesPresenter(schedulerProvider: SchedulerProvider,
-                                interactor: DetailInteractor): DetailContract.Presenter {
+                                interactor: DetailContract.Interactor): DetailContract.Presenter {
         return DetailPresenter(schedulerProvider, interactor)
     }
 
