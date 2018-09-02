@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.adapter_movies.*
 class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
 
     private val mMovies = mutableListOf<Movie>()
+    var mListener: Listener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -55,6 +56,25 @@ class MoviesAdapter : RecyclerView.Adapter<MoviesAdapter.ViewHolder>() {
         DiffUtil.calculateDiff(moviesDiffUtilCallback).dispatchUpdatesTo(this)
     }
 
-    inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView), LayoutContainer
+
+    interface Listener {
+        fun onMovieClicked(movie: Movie)
+    }
+
+    inner class ViewHolder(override val containerView: View): RecyclerView.ViewHolder(containerView), LayoutContainer, View.OnClickListener {
+
+        init {
+            listOf(ivCover, tvName).forEach {
+                it.setOnClickListener(this)
+            }
+        }
+
+        override fun onClick(v: View?) {
+            if (adapterPosition != RecyclerView.NO_POSITION && mListener != null) {
+                val movie = mMovies[adapterPosition]
+                mListener?.onMovieClicked(movie)
+            }
+        }
+    }
 
 }

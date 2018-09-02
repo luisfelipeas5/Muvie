@@ -42,4 +42,10 @@ class MoviesPresenter(private val schedulerProvider: SchedulerProvider,
         throwable.printStackTrace()
     }
 
+    override fun onMovieClicked(movie: Movie) {
+        movie.getId()?.let {
+            mView?.showDetailScreen(it)
+        }
+    }
+
 }

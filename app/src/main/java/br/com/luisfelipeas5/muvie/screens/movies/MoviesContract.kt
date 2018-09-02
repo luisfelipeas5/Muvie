@@ -10,11 +10,13 @@ interface MoviesContract: Contract {
     interface View: Contract.View {
         fun onNewMoviesReady(movies: List<Movie>)
         fun onLoadingMovies(loading: Boolean)
+        fun showDetailScreen(movieId: String)
     }
 
     interface Presenter: Contract.Presenter<View> {
         @OnLifecycleEvent(Lifecycle.Event.ON_START)
         fun loadMovies()
+        fun onMovieClicked(movie: Movie)
     }
 
     interface Interactor: Contract.Interactor {
