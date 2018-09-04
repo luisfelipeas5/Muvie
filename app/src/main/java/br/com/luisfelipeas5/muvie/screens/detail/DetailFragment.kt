@@ -6,6 +6,8 @@ import br.com.luisfelipeas5.muvie.androidview.BaseFragment
 import br.com.luisfelipeas5.muvie.di.components.BaseComponent
 import br.com.luisfelipeas5.muvie.model.domain.movie.Movie
 import br.com.luisfelipeas5.muvie.screens.detail.di.DetailModule
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.fragment_detail.*
 import javax.inject.Inject
 
@@ -32,7 +34,13 @@ class DetailFragment: BaseFragment(), DetailContract.View {
     }
 
     override fun onMovieReady(movie: Movie) {
-        tvMovie.text  = movie.getName()
+        tvTitle.text  = movie.getName()
+        tvOverview.text = movie.getOverview()
+        Glide.with(this)
+                .asBitmap()
+                .load(movie.getCover())
+                .apply(RequestOptions.centerCropTransform())
+                .into(ivCover)
     }
 
     override fun onLoadMovieFailed(throwable: Throwable) {

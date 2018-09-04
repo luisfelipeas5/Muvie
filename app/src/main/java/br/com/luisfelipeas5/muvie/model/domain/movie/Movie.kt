@@ -4,4 +4,6 @@ interface Movie {
     fun getName(): String?
     fun getId(): String?
     fun getSmallCover(): String?
+    fun getOverview(): String?
+    fun getCover(): String?
 }
